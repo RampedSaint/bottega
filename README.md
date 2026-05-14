@@ -2,7 +2,7 @@
 
 Delivery premium de frutas y verduras por suscripción mensual. Zona norte de Buenos Aires.
 
-**La estación, en tu mesa.**
+**La cosecha de la semana.**
 
 ## Estructura
 
