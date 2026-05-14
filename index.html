@@ -1049,6 +1049,93 @@
 
   ::selection { background: var(--verde-bosque); color: var(--crema); }
 
+  /* ============ FLOW & ANCHORS ============ */
+  /* Anchors no quedan tapados por el nav sticky */
+  section[id], div[id] { scroll-margin-top: 88px; }
+
+  /* Zone selector en planes */
+  .zone-selector {
+    margin-bottom: 48px;
+    text-align: center;
+  }
+  .zone-selector .zone-label {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--madera);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .zone-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+  .zone-pill {
+    font-family: "Inter", sans-serif;
+    font-size: 13px;
+    color: var(--verde-bosque);
+    background: transparent;
+    border: 1px solid var(--madera-suave);
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 180ms ease;
+    font-weight: 500;
+  }
+  .zone-pill:hover { border-color: var(--madera); color: var(--madera); }
+  .zone-pill.active {
+    background: var(--verde-bosque);
+    color: var(--crema);
+    border-color: var(--verde-bosque);
+  }
+
+  /* Inline CTA al final de cada sección informativa */
+  .section-cta {
+    margin-top: 56px;
+    text-align: center;
+  }
+  .section-cta .link-cta {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 19px;
+    color: var(--verde-bosque);
+    border-bottom: 1px solid var(--madera-suave);
+    padding-bottom: 4px;
+    transition: all 180ms ease;
+  }
+  .section-cta .link-cta:hover {
+    color: var(--madera);
+    border-bottom-color: var(--madera);
+  }
+  /* Variante para fondos oscuros (week section) */
+  .week .section-cta .link-cta {
+    color: var(--crema);
+    border-bottom-color: var(--madera-suave);
+  }
+  .week .section-cta .link-cta:hover {
+    color: var(--acento-2);
+    border-bottom-color: var(--acento-2);
+  }
+
+  /* Secondary link debajo del CTA principal */
+  .cta-final-secondary {
+    margin-top: 28px;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--oliva-soft);
+  }
+  .cta-final-secondary a {
+    color: var(--madera-suave);
+    border-bottom: 1px solid var(--madera-suave);
+    padding-bottom: 2px;
+  }
+  .cta-final-secondary a:hover { color: var(--crema); border-bottom-color: var(--crema); }
+
   /* ============ RESPONSIVE TUNING ============ */
 
   /* Eyebrow / labels: subir mínimo a 12px */
@@ -1233,6 +1320,9 @@
       <p>Miércoles o jueves —según tu zona— el cajón llega a tu puerta. Abrís y cocinás. Eso es todo.</p>
     </div>
   </div>
+  <div class="section-cta">
+    <a href="#planes" class="link-cta">Elegí tu plan →</a>
+  </div>
 </section>
 
 <!-- ============ QUÉ VIENE EN EL CAJÓN ============ -->
@@ -1379,6 +1469,9 @@
     </div>
 
   </div>
+  <div class="section-cta">
+    <a href="#planes" class="link-cta">Probá un cajón →</a>
+  </div>
 </section>
 
 <!-- ============ ESTA SEMANA ============ -->
@@ -1433,6 +1526,9 @@
       </li>
     </ul>
   </div>
+  <div class="section-cta">
+    <a href="#planes" class="link-cta">Recibí esto el miércoles →</a>
+  </div>
 </section>
 
 <!-- ============ PLANES ============ -->
@@ -1442,6 +1538,20 @@
     <h2>Elegí tu cajón. <em>Cancelás cuando quieras.</em></h2>
     <p>Tres tamaños pensados para distintas familias. El precio es por mes e incluye cuatro entregas semanales puerta a puerta.</p>
   </div>
+
+  <div class="zone-selector">
+    <span class="zone-label">¿De dónde sos? (opcional)</span>
+    <div class="zone-pills" role="radiogroup" aria-label="Tu zona de entrega">
+      <button type="button" class="zone-pill" data-zone="Nordelta">Nordelta</button>
+      <button type="button" class="zone-pill" data-zone="Villanueva">Villanueva</button>
+      <button type="button" class="zone-pill" data-zone="Tigre">Tigre</button>
+      <button type="button" class="zone-pill" data-zone="Maschwitz">Maschwitz</button>
+      <button type="button" class="zone-pill" data-zone="Escobar">Escobar</button>
+      <button type="button" class="zone-pill" data-zone="Pilar">Pilar</button>
+      <button type="button" class="zone-pill" data-zone="otra">Otra zona</button>
+    </div>
+  </div>
+
   <div class="plans-grid">
     <div class="plan">
       <span class="label">Esencial</span>
@@ -1455,7 +1565,7 @@
         <li>Entrega puerta a puerta</li>
         <li>Cancelás cuando quieras</li>
       </ul>
-      <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20quiero%20suscribirme%20al%20plan%20Picolo%20(1%E2%80%932%20personas)." class="btn" target="_blank" rel="noopener noreferrer" aria-label="Empezar plan Picolo por WhatsApp">Empezar</a>
+      <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20quiero%20suscribirme%20al%20plan%20Picolo%20(1%E2%80%932%20personas)." class="btn plan-cta" data-plan="Picolo" data-personas="1–2 personas" target="_blank" rel="noopener noreferrer" aria-label="Empezar plan Picolo por WhatsApp">Empezar</a>
     </div>
 
     <div class="plan featured">
@@ -1472,7 +1582,7 @@
         <li>Acceso anticipado a productos especiales</li>
         <li>Cancelás cuando quieras</li>
       </ul>
-      <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20quiero%20suscribirme%20al%20plan%20Famiglia%20(3%E2%80%934%20personas)." class="btn" target="_blank" rel="noopener noreferrer" aria-label="Empezar plan Famiglia por WhatsApp">Empezar</a>
+      <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20quiero%20suscribirme%20al%20plan%20Famiglia%20(3%E2%80%934%20personas)." class="btn plan-cta" data-plan="Famiglia" data-personas="3–4 personas" target="_blank" rel="noopener noreferrer" aria-label="Empezar plan Famiglia por WhatsApp">Empezar</a>
     </div>
 
     <div class="plan">
@@ -1489,7 +1599,7 @@
         <li>Hierbas frescas de huerta propia incluidas</li>
         <li>Cancelás cuando quieras</li>
       </ul>
-      <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20quiero%20suscribirme%20al%20plan%20Abbondanza%20(5%2B%20personas)." class="btn" target="_blank" rel="noopener noreferrer" aria-label="Empezar plan Abbondanza por WhatsApp">Empezar</a>
+      <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20quiero%20suscribirme%20al%20plan%20Abbondanza%20(5%2B%20personas)." class="btn plan-cta" data-plan="Abbondanza" data-personas="5+ personas" target="_blank" rel="noopener noreferrer" aria-label="Empezar plan Abbondanza por WhatsApp">Empezar</a>
     </div>
   </div>
   <div class="plans-foot">
@@ -1543,6 +1653,9 @@
       <p>Llega a tu puerta entre las 9 y las 13. Te avisamos por WhatsApp cuando va en camino.</p>
     </div>
   </div>
+  <div class="section-cta">
+    <a href="#planes" class="link-cta">Si tu zona está acá, empezá →</a>
+  </div>
 </section>
 
 <!-- ============ MANIFIESTO ============ -->
@@ -1587,14 +1700,20 @@
       <p class="faq-a">No. La suscripción es mes a mes. Probás un mes y decidís.</p>
     </details>
   </div>
+  <div class="section-cta">
+    <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20tengo%20una%20consulta%20antes%20de%20suscribirme." class="link-cta" target="_blank" rel="noopener noreferrer">¿Otra duda? Escribinos →</a>
+  </div>
 </section>
 
 <!-- ============ CTA FINAL ============ -->
 <section class="cta-final" id="suscribite">
   <div class="cta-final-inner">
-    <h2>Empezá <em>esta semana.</em></h2>
-    <p>Suscribite hoy y recibí tu primer cajón el próximo miércoles o jueves, según tu zona.</p>
-    <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20quiero%20suscribirme" class="btn large" target="_blank" rel="noopener noreferrer" aria-label="Suscribirme por WhatsApp (abre WhatsApp en una nueva pestaña)">Suscribirme por WhatsApp</a>
+    <h2>¿Hablamos <em>antes de empezar?</em></h2>
+    <p>Si querés contarnos cuántos son en casa, alergias, o consultar precios, escribinos. Te respondemos personalmente.</p>
+    <a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20tengo%20una%20consulta%20antes%20de%20suscribirme." class="btn large" target="_blank" rel="noopener noreferrer" aria-label="Hablar con el equipo de Spiga por WhatsApp">Hablar con el equipo</a>
+    <div class="cta-final-secondary">
+      ¿Listo? <a href="#planes">Volver a los planes →</a>
+    </div>
   </div>
 </section>
 
@@ -1620,7 +1739,7 @@
     <div class="foot-col">
       <h5>Contacto</h5>
       <ul>
-        <li><a href="https://wa.me/5491150562645">WhatsApp</a></li>
+        <li><a href="https://wa.me/5491150562645?text=Hola%20Spiga%2C%20tengo%20una%20consulta." target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
         <li><a href="mailto:hola@spiga.com.ar">hola@spiga.com.ar</a></li>
         <li><a href="https://instagram.com/spiga.ar">@spiga.ar</a></li>
       </ul>
@@ -1643,6 +1762,49 @@
     Imágenes generadas con IA · <a href="https://pollinations.ai" target="_blank" rel="noopener noreferrer">Pollinations · Flux</a> · placeholder hasta tener fotografía propia
   </div>
 </footer>
+
+<script>
+  // Zone selector → actualiza el mensaje pre-cargado de los CTAs de plan
+  (function () {
+    const PHONE = '5491150562645';
+    const pills = document.querySelectorAll('.zone-pill');
+    const ctas = document.querySelectorAll('.plan-cta');
+    let activeZone = null;
+
+    function buildMsg(plan, personas, zone) {
+      if (zone === 'otra') {
+        return `Hola Spiga, vivo fuera de las zonas habituales (Nordelta/Villanueva/Tigre/Maschwitz/Escobar/Pilar). ¿Llegan a mi domicilio? Me interesa el plan ${plan} (${personas}).`;
+      }
+      let msg = `Hola Spiga, quiero suscribirme al plan ${plan} (${personas}).`;
+      if (zone) msg += ` Vivo en ${zone}.`;
+      return msg;
+    }
+
+    function updateCtas() {
+      ctas.forEach(cta => {
+        const plan = cta.dataset.plan;
+        const personas = cta.dataset.personas;
+        const msg = buildMsg(plan, personas, activeZone);
+        cta.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
+      });
+    }
+
+    pills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        const z = pill.dataset.zone;
+        if (activeZone === z) {
+          activeZone = null;
+          pill.classList.remove('active');
+        } else {
+          pills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+          activeZone = z;
+        }
+        updateCtas();
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>
