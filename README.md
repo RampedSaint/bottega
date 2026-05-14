@@ -1,4 +1,4 @@
-# Bottega
+# Spiga
 
 Delivery premium de frutas y verduras por suscripción mensual. Zona norte de Buenos Aires.
 
@@ -11,5 +11,5 @@ Delivery premium de frutas y verduras por suscripción mensual. Zona norte de Bu
 
 ## URLs (cuando GitHub Pages esté activo)
 
-- Sitio: https://rampedsaint.github.io/bottega/
-- Brandbook: https://rampedsaint.github.io/bottega/brandbook/
+- Sitio: https://rampedsaint.github.io/spiga/
+- Brandbook: https://rampedsaint.github.io/spiga/brandbook/
