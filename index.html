@@ -1093,6 +1093,82 @@
     border-color: var(--verde-bosque);
   }
 
+  /* Feedback visible bajo las pills cuando hay zona elegida */
+  .zone-feedback {
+    margin-top: 18px;
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--verde-bosque);
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: opacity 250ms ease, transform 250ms ease;
+    min-height: 24px;
+  }
+  .zone-feedback.is-shown {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .zone-feedback strong { font-weight: 500; color: var(--madera); font-style: normal; }
+  .zone-feedback .dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--madera);
+    margin-right: 8px;
+    vertical-align: middle;
+    transform: translateY(-1px);
+  }
+
+  /* Bidireccional: zone pills en sección "Zonas" se highlightean
+     cuando el zone-pill de arriba está activo (y viceversa) */
+  .zone-mirror {
+    cursor: pointer;
+    background: var(--crema-soft);
+    color: var(--verde-bosque);
+    border: 1px solid transparent;
+    transition: all 200ms ease;
+    font-weight: 500;
+  }
+  .zone-mirror:hover {
+    background: var(--madera-suave);
+    color: var(--crema);
+  }
+  .zone-mirror.is-active-zone {
+    background: var(--verde-bosque);
+    color: var(--crema);
+    border-color: var(--verde-bosque);
+    box-shadow: 0 4px 14px -4px rgba(44,61,46,0.4);
+  }
+  /* La card del día se resalta cuando una zona suya está activa */
+  .zone {
+    transition: all 250ms ease;
+  }
+  .zone.is-active-day {
+    border-color: var(--madera);
+    background: var(--crema);
+    box-shadow: 0 8px 24px -10px rgba(160,117,69,0.35);
+  }
+  .zone.is-active-day .zone-day {
+    color: var(--madera);
+  }
+  .zone.is-active-day::before {
+    content: "Tu día";
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    background: var(--madera);
+    color: var(--crema);
+    padding: 4px 12px;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 999px;
+  }
+  .zone { position: relative; }
+
   /* Inline CTA al final de cada sección informativa */
   .section-cta {
     margin-top: 56px;
@@ -1550,6 +1626,7 @@
       <button type="button" class="zone-pill" data-zone="Pilar">Pilar</button>
       <button type="button" class="zone-pill" data-zone="otra">Otra zona</button>
     </div>
+    <div id="zone-feedback" class="zone-feedback" aria-live="polite"></div>
   </div>
 
   <div class="plans-grid">
@@ -1616,22 +1693,22 @@
   </div>
 
   <div class="zones-grid">
-    <div class="zone">
+    <div class="zone" data-day="Miércoles">
       <div class="zone-day">Miércoles</div>
       <div class="zone-date">Día de entrega</div>
       <div class="zone-list">
-        <span class="pill">Nordelta</span>
-        <span class="pill">Villanueva</span>
-        <span class="pill">Tigre</span>
+        <button type="button" class="pill zone-mirror" data-zone="Nordelta">Nordelta</button>
+        <button type="button" class="pill zone-mirror" data-zone="Villanueva">Villanueva</button>
+        <button type="button" class="pill zone-mirror" data-zone="Tigre">Tigre</button>
       </div>
     </div>
-    <div class="zone">
+    <div class="zone" data-day="Jueves">
       <div class="zone-day">Jueves</div>
       <div class="zone-date">Día de entrega</div>
       <div class="zone-list">
-        <span class="pill">Maschwitz</span>
-        <span class="pill">Escobar</span>
-        <span class="pill">Pilar</span>
+        <button type="button" class="pill zone-mirror" data-zone="Maschwitz">Maschwitz</button>
+        <button type="button" class="pill zone-mirror" data-zone="Escobar">Escobar</button>
+        <button type="button" class="pill zone-mirror" data-zone="Pilar">Pilar</button>
       </div>
     </div>
   </div>
@@ -1764,11 +1841,23 @@
 </footer>
 
 <script>
-  // Zone selector → actualiza el mensaje pre-cargado de los CTAs de plan
+  // Zone selector → actualiza CTAs WhatsApp + sincroniza con sección Zonas + feedback visible
   (function () {
     const PHONE = '5491150562645';
-    const pills = document.querySelectorAll('.zone-pill');
+    const ZONE_DAY = {
+      'Nordelta': 'Miércoles',
+      'Villanueva': 'Miércoles',
+      'Tigre': 'Miércoles',
+      'Maschwitz': 'Jueves',
+      'Escobar': 'Jueves',
+      'Pilar': 'Jueves'
+    };
+
+    const topPills = document.querySelectorAll('.zone-pill');
+    const mirrorPills = document.querySelectorAll('.zone-mirror');
+    const zoneCards = document.querySelectorAll('.zone[data-day]');
     const ctas = document.querySelectorAll('.plan-cta');
+    const feedback = document.getElementById('zone-feedback');
     let activeZone = null;
 
     function buildMsg(plan, personas, zone) {
@@ -1783,27 +1872,51 @@
 
     function updateCtas() {
       ctas.forEach(cta => {
-        const plan = cta.dataset.plan;
-        const personas = cta.dataset.personas;
-        const msg = buildMsg(plan, personas, activeZone);
+        const msg = buildMsg(cta.dataset.plan, cta.dataset.personas, activeZone);
         cta.href = `https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`;
       });
     }
 
-    pills.forEach(pill => {
-      pill.addEventListener('click', () => {
-        const z = pill.dataset.zone;
-        if (activeZone === z) {
-          activeZone = null;
-          pill.classList.remove('active');
-        } else {
-          pills.forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-          activeZone = z;
-        }
-        updateCtas();
+    function updatePills() {
+      topPills.forEach(p => p.classList.toggle('active', activeZone === p.dataset.zone));
+      mirrorPills.forEach(p => p.classList.toggle('is-active-zone', activeZone === p.dataset.zone));
+      zoneCards.forEach(card => {
+        const day = card.dataset.day;
+        const isActive = activeZone && activeZone !== 'otra' && ZONE_DAY[activeZone] === day;
+        card.classList.toggle('is-active-day', isActive);
       });
-    });
+    }
+
+    function updateFeedback() {
+      if (!feedback) return;
+      if (!activeZone) {
+        feedback.innerHTML = '';
+        feedback.classList.remove('is-shown');
+        return;
+      }
+      if (activeZone === 'otra') {
+        feedback.innerHTML = '<span class="dot"></span>Vivís fuera de las zonas habituales — preguntaremos si llegamos a tu domicilio.';
+      } else {
+        const day = ZONE_DAY[activeZone] || '';
+        feedback.innerHTML = `<span class="dot"></span>Vivís en <strong>${activeZone}</strong> · día de entrega: <strong>${day}</strong>.`;
+      }
+      feedback.classList.add('is-shown');
+    }
+
+    function setZone(z) {
+      activeZone = (activeZone === z) ? null : z;
+      updatePills();
+      updateFeedback();
+      updateCtas();
+    }
+
+    topPills.forEach(p => p.addEventListener('click', () => setZone(p.dataset.zone)));
+    mirrorPills.forEach(p => p.addEventListener('click', () => {
+      setZone(p.dataset.zone);
+      // Scroll suave al selector arriba para que el usuario vea el efecto y pueda elegir plan
+      const planesSection = document.getElementById('planes');
+      if (planesSection) planesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }));
   })();
 </script>
 
