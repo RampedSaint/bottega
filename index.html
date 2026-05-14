@@ -502,6 +502,30 @@
     height: 3px;
     background: var(--season-color, var(--oliva));
   }
+  /* Estación actual: primera + destacada */
+  .cajon-season.is-current-season {
+    order: -1;
+    border-color: var(--madera);
+    background: var(--crema);
+    box-shadow: 0 16px 36px -10px rgba(160,117,69,0.32);
+  }
+  .cajon-season.is-current-season::before { height: 5px; }
+  .cajon-season.is-current-season::after {
+    content: "Esta estación";
+    position: absolute;
+    top: -10px;
+    left: 24px;
+    background: var(--madera);
+    color: var(--crema);
+    padding: 4px 12px;
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-radius: 999px;
+  }
+  .cajon-season.is-current-season .season-name { color: var(--madera); }
   .cajon-season .season-name {
     font-family: "Fraunces", serif;
     font-style: italic;
@@ -1443,7 +1467,7 @@
 
   <div class="cajon-seasons">
 
-    <div class="cajon-season" style="--season-color: #A3C49C;">
+    <div class="cajon-season" data-season="primavera" style="--season-color: #A3C49C;">
       <div class="season-name">Primavera</div>
       <div class="season-months">sept · oct · nov</div>
       <div class="season-divider"></div>
@@ -1470,7 +1494,7 @@
       </div>
     </div>
 
-    <div class="cajon-season" style="--season-color: #C9573A;">
+    <div class="cajon-season" data-season="verano" style="--season-color: #C9573A;">
       <div class="season-name">Verano</div>
       <div class="season-months">dic · ene · feb</div>
       <div class="season-divider"></div>
@@ -1498,7 +1522,7 @@
       </div>
     </div>
 
-    <div class="cajon-season" style="--season-color: #B66A3D;">
+    <div class="cajon-season" data-season="otono" style="--season-color: #B66A3D;">
       <div class="season-name">Otoño</div>
       <div class="season-months">mar · abr · may</div>
       <div class="season-divider"></div>
@@ -1526,7 +1550,7 @@
       </div>
     </div>
 
-    <div class="cajon-season" style="--season-color: #A04646;">
+    <div class="cajon-season" data-season="invierno" style="--season-color: #A04646;">
       <div class="season-name">Invierno</div>
       <div class="season-months">jun · jul · ago</div>
       <div class="season-divider"></div>
@@ -1927,6 +1951,22 @@
       const planesSection = document.getElementById('planes');
       if (planesSection) planesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }));
+  })();
+
+  // Detecta estación actual (hemisferio sur, Argentina) y la pone primera + destacada
+  (function () {
+    const SEASONS = {
+      primavera: [9, 10, 11],
+      verano:    [12, 1, 2],
+      otono:     [3, 4, 5],
+      invierno:  [6, 7, 8]
+    };
+    const month = new Date().getMonth() + 1;
+    const current = Object.keys(SEASONS).find(s => SEASONS[s].includes(month));
+    if (!current) return;
+    document.querySelectorAll('.cajon-season').forEach(card => {
+      if (card.dataset.season === current) card.classList.add('is-current-season');
+    });
   })();
 </script>
 
