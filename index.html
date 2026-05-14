@@ -244,23 +244,34 @@
   .hero-art {
     position: relative;
     aspect-ratio: 4 / 5;
-    background:
-      linear-gradient(180deg, transparent 0%, transparent 55%, rgba(31,44,32,0.55) 100%),
-      url('https://images.unsplash.com/photo-1635341083777-5f93a755e916?ixlib=rb-4.1.0&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    background-color: var(--oliva-mas-oscuro);
+    background: linear-gradient(180deg, #3A4D3C 0%, var(--verde-bosque) 60%, #1F2C20 100%);
     border-radius: 8px;
     overflow: hidden;
     display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 30px 60px -20px rgba(0,0,0,0.25);
+  }
+  .hero-art::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(242,235,221,0.10), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(160,117,69,0.30), transparent 60%),
+      repeating-linear-gradient(90deg, transparent 0 14px, rgba(0,0,0,0.05) 14px 15px);
+  }
+  .hero-art-mono {
+    z-index: 2;
+    width: 60%;
+    max-width: 280px;
   }
   .hero-art-caption {
     position: absolute;
     bottom: 24px;
     left: 24px;
     right: 24px;
-    color: var(--crema);
+    color: var(--oliva-soft);
     font-family: "Inter", sans-serif;
     font-size: 11px;
     letter-spacing: 0.22em;
@@ -439,10 +450,6 @@
 
   .seasonal-intro {
     margin: 48px 0 32px;
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    gap: 48px;
-    align-items: end;
   }
   .seasonal-intro .label { display: block; margin-bottom: 14px; }
   .seasonal-intro h3 {
@@ -452,18 +459,6 @@
     color: var(--verde-bosque);
     letter-spacing: -0.015em;
     line-height: 1.1;
-  }
-  .seasonal-intro .seasonal-photo {
-    aspect-ratio: 1 / 1;
-    background:
-      linear-gradient(180deg, transparent 0%, rgba(31,44,32,0.18) 100%),
-      url('https://images.unsplash.com/photo-1608869857121-c0bcdf4fff2c?ixlib=rb-4.1.0&auto=format&fit=crop&w=600&q=80') center/cover no-repeat;
-    background-color: var(--oliva-mas-oscuro);
-    border-radius: 4px;
-  }
-  @media (max-width: 700px) {
-    .seasonal-intro { grid-template-columns: 1fr; }
-    .seasonal-intro .seasonal-photo { aspect-ratio: 16/9; }
   }
 
   .cajon-seasons {
@@ -548,16 +543,12 @@
 
   /* ============ ESTA SEMANA ============ */
   .week {
-    background:
-      linear-gradient(135deg, rgba(63,74,48,0.94) 0%, rgba(84,97,63,0.86) 100%),
-      url('https://images.unsplash.com/photo-1669051759318-e3f68b839d1d?ixlib=rb-4.1.0&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    background-color: var(--verde-bosque);
+    background: var(--verde-bosque);
     color: var(--crema);
     padding: 120px var(--pad-x);
     margin: 80px calc(50% - 50vw);
     width: 100vw;
     max-width: 100vw;
-    position: relative;
   }
   .week-inner {
     max-width: 1280px;
@@ -809,17 +800,12 @@
 
   /* ============ MANIFIESTO ============ */
   .manifest-block {
-    background:
-      linear-gradient(180deg, rgba(31,28,24,0.78) 0%, rgba(31,28,24,0.88) 100%),
-      url('https://images.unsplash.com/photo-1663154438428-60cdc204f99b?ixlib=rb-4.1.0&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    background-color: var(--tinta);
+    background: var(--crema-soft);
     padding: 120px var(--pad-x);
     margin: 80px calc(50% - 50vw);
     width: 100vw;
     max-width: 100vw;
-    position: relative;
   }
-  .manifest-block .label { color: var(--madera-suave) !important; }
   .manifest-inner {
     max-width: 900px;
     margin: 0 auto;
@@ -832,18 +818,18 @@
     font-weight: 300;
     font-size: clamp(32px, 4.2vw, 52px);
     line-height: 1.25;
-    color: var(--crema);
+    color: var(--verde-bosque);
     letter-spacing: -0.012em;
   }
   .manifest-inner h2 em {
     font-style: italic;
-    color: var(--madera-suave);
+    color: var(--oliva-texto);
   }
   .manifest-inner .manifest-coda {
     font-family: "Fraunces", serif;
     font-size: clamp(22px, 2.4vw, 28px);
     line-height: 1.4;
-    color: var(--oliva-soft);
+    color: var(--verde-bosque);
     margin-top: 32px;
     font-style: italic;
   }
@@ -853,7 +839,7 @@
     align-items: center;
     justify-content: center;
     gap: 16px;
-    color: var(--madera-suave);
+    color: var(--oliva-texto);
     font-family: "Inter", sans-serif;
     font-size: 12px;
     letter-spacing: 0.2em;
@@ -863,7 +849,7 @@
     content: "";
     width: 32px;
     height: 1px;
-    background: var(--madera-suave);
+    background: var(--oliva);
   }
 
   /* ============ FAQ ============ */
@@ -904,10 +890,7 @@
 
   /* ============ CTA FINAL ============ */
   .cta-final {
-    background:
-      linear-gradient(125deg, rgba(31,28,24,0.88) 0%, rgba(63,74,48,0.78) 100%),
-      url('https://images.unsplash.com/photo-1492739159057-7d1896b3c63f?ixlib=rb-4.1.0&auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    background-color: var(--verde-bosque);
+    background: var(--verde-bosque);
     color: var(--crema);
     padding: 120px var(--pad-x);
     margin: 0 calc(50% - 50vw) 0;
@@ -921,7 +904,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(232,199,102,0.10), transparent 60%);
+    background: radial-gradient(ellipse at 50% 100%, rgba(232,199,102,0.18), transparent 60%);
   }
   .cta-final::after {
     content: "";
@@ -1033,17 +1016,6 @@
     .foot-brand { grid-column: 1 / -1; }
     .foot-bottom { flex-direction: column; gap: 12px; text-align: center; }
   }
-  .foot-credits {
-    max-width: 1280px;
-    margin: 16px auto 0;
-    font-family: "Inter", sans-serif;
-    font-size: 10px;
-    color: rgba(242,235,221,0.45);
-    letter-spacing: 0.05em;
-    text-align: center;
-  }
-  .foot-credits a { color: rgba(242,235,221,0.7); text-decoration: underline; }
-  .foot-credits a:hover { color: var(--crema); }
 
   ::selection { background: var(--verde-bosque); color: var(--crema); }
 </style>
@@ -1085,10 +1057,15 @@
       <a href="#como" class="secondary">¿Cómo funciona? →</a>
     </div>
   </div>
-  <div class="hero-art" role="img" aria-label="Cajón de frutas y verduras seleccionadas a mano sobre madera">
+  <div class="hero-art">
+    <svg class="hero-art-mono" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+      <circle cx="100" cy="100" r="95" fill="none" stroke="#F2EBDD" stroke-width="1.5" />
+      <circle cx="100" cy="100" r="86" fill="none" stroke="#F2EBDD" stroke-width="0.5" />
+      <text x="100" y="78" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="36" fill="#F2EBDD" letter-spacing="-0.5">Bottega</text><text x="100" y="98" text-anchor="middle" font-family="Inter, sans-serif" font-size="8" letter-spacing="2.5" fill="#F2EBDD">DAL 2026</text><g stroke="#F2EBDD" stroke-width="1.5" fill="none" stroke-linecap="round"><path d="M 50,130 Q 100,160 150,130"/></g><g fill="#F2EBDD"><ellipse cx="58" cy="120" rx="9" ry="3.5" transform="rotate(-40 58 120)"/><ellipse cx="72" cy="135" rx="10" ry="3.5" transform="rotate(-25 72 135)"/><ellipse cx="90" cy="146" rx="10" ry="3.5" transform="rotate(-10 90 146)"/><ellipse cx="110" cy="146" rx="10" ry="3.5" transform="rotate(10 110 146)"/><ellipse cx="128" cy="135" rx="10" ry="3.5" transform="rotate(25 128 135)"/><ellipse cx="142" cy="120" rx="9" ry="3.5" transform="rotate(40 142 120)"/><circle cx="80" cy="128" r="3"/><circle cx="100" cy="138" r="3.5"/><circle cx="120" cy="128" r="3"/></g>
+    </svg>
     <div class="hero-art-caption">
-      <span>Selección de la semana</span>
       <span>Bottega · Mayo</span>
+      <span>Buenos Aires</span>
     </div>
   </div>
 </section>
@@ -1159,11 +1136,8 @@
 
   <!-- Estacionales -->
   <div class="seasonal-intro">
-    <div>
-      <span class="label">Lo que cambia con la estación</span>
-      <h3>Frescos en su mejor momento.</h3>
-    </div>
-    <div class="seasonal-photo" role="img" aria-label="Granada partida sobre madera oscura"></div>
+    <span class="label">Lo que cambia con la estación</span>
+    <h3>Frescos en su mejor momento.</h3>
   </div>
 
   <div class="cajon-seasons">
@@ -1539,9 +1513,6 @@
   <div class="foot-bottom">
     <span>© 2026 Bottega · Buenos Aires</span>
     <span>Hecho con cuidado en zona norte</span>
-  </div>
-  <div class="foot-credits">
-    Fotografía: Skön Communication, Mary Skrynnikova, Caroline Attwood, Calvin Craig, GR Stocks · <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a>
   </div>
 </footer>
 
