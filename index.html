@@ -1046,6 +1046,101 @@
   .foot-credits a:hover { color: var(--crema); }
 
   ::selection { background: var(--verde-bosque); color: var(--crema); }
+
+  /* ============ RESPONSIVE TUNING ============ */
+
+  /* Eyebrow / labels: subir mínimo a 12px */
+  .label, .num { font-size: 12px; }
+  .foot-col h5 { font-size: 12px; }
+  .zone-date { font-size: 12px; }
+  .week-list .badge { font-size: 12px; }
+  .seasonal-intro .label { font-size: 12px; }
+  .basics-head .label-wood { font-size: 12px; }
+  .pair-label { font-size: 12px; }
+
+  /* Plan featured: precio-meta ahora visible sobre verde */
+  .plan.featured .price-meta { color: var(--oliva-soft); }
+
+  /* Plan CTA no full-width en tablet/desktop, solo mobile */
+  @media (min-width: 700px) {
+    .plan .btn { width: auto; align-self: flex-start; }
+    .plan { align-items: flex-start; }
+    .plan .btn { padding: 12px 28px; }
+  }
+
+  /* Plans: 2 columnas en tablet (700-1099), 3 en desktop */
+  @media (min-width: 700px) and (max-width: 1099px) {
+    .plans-grid { grid-template-columns: repeat(2, 1fr); }
+    .plan { padding: 32px 28px; }
+    .plan.featured { grid-column: 1 / -1; }
+  }
+
+  /* Mobile (<720px): nav touch targets ≥44px, agrupar mejor */
+  @media (max-width: 720px) {
+    .nav-inner { padding: 8px var(--pad-x); }
+    .nav-links a:not(.btn) {
+      padding: 12px 6px;
+      font-size: 13px;
+      line-height: 1;
+    }
+    .nav-links a.btn {
+      padding: 12px 18px;
+      font-size: 13px;
+    }
+  }
+
+  /* Mobile pequeño (<600px) — reducir padding y escalar tipografía */
+  @media (max-width: 600px) {
+    section.block { padding: 80px var(--pad-x); }
+    .block-head { margin-bottom: 40px; }
+
+    .hero { padding: 48px var(--pad-x) 64px; gap: 32px; }
+    .hero-text h1 { font-size: clamp(40px, 11vw, 64px); }
+    .hero-text .lead { font-size: 18px; }
+    .hero-art { aspect-ratio: 4 / 3; }
+
+    .week, .manifest-block, .cta-final { padding: 80px var(--pad-x); }
+    .week-list .name { font-size: 18px; line-height: 1.3; }
+    .week-list .name em { display: block; margin-left: 0; margin-top: 2px; font-size: 13px; }
+    .week-list li { padding: 14px 0; gap: 12px; }
+
+    .basics { padding: 28px 24px; }
+    .basics-pills .pill-wood { font-size: 16px; padding: 10px 16px; }
+
+    .manifest-inner h2 { font-size: clamp(26px, 5.4vw, 40px); }
+
+    .cta-final h2 { font-size: clamp(36px, 9vw, 56px); }
+    .cta-final p { font-size: 17px; }
+
+    .faq-q { font-size: 18px; }
+    .faq-a { font-size: 16px; padding-right: 24px; }
+
+    .how-step .step-num { font-size: 56px; margin-bottom: 16px; }
+    .how-step h3 { font-size: 24px; }
+
+    .zone { padding: 28px 24px; }
+    .timeline { gap: 28px; }
+  }
+
+  /* El cajón: en mobile, las 4 cards estacionales se ven menos largas
+     gracias a que las columnas internas (Verduras | Frutas) se vuelven
+     2-col side by side en vez de stack vertical */
+  @media (max-width: 700px) {
+    .cajon-season { padding: 24px 20px; }
+    .cajon-season .season-cols { grid-template-columns: 1fr 1fr; gap: 18px; }
+    .cajon-season .season-name { font-size: 22px; }
+    .cajon-season .season-cols li { font-size: 14px; padding: 3px 0; }
+  }
+
+  /* Móvil chico (<480) — pieces más comprimidos */
+  @media (max-width: 480px) {
+    .hero-text h1 { font-size: clamp(36px, 12vw, 56px); }
+    .hero-art-caption { font-size: 10px; bottom: 16px; left: 16px; right: 16px; }
+    .strip-inner { font-size: 16px; gap: 32px; }
+    .strip-inner span { gap: 32px; }
+    .week-foot, .seasonal-intro h3 { font-size: clamp(22px, 6vw, 30px); }
+    .basics-pills { gap: 8px; }
+  }
 </style>
 </head>
 <body>
