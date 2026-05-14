@@ -3,24 +3,32 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Stagione · La estación, en tu mesa.</title>
+<title>Bottega · La estación, en tu mesa.</title>
 <meta name="description" content="Suscripción semanal de frutas y verduras premium, seleccionadas a mano. Entrega puerta a puerta en Nordelta, Villanueva, Tigre, Maschwitz, Escobar y Pilar." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1;1,9..144,300..900,0..100,0..1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-<link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="95" fill="none" stroke="%232C3D2E" stroke-width="6"/><text x="100" y="148" text-anchor="middle" font-family="Georgia,serif" font-size="140" font-style="italic" fill="%232C3D2E">S</text></svg>' />
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><circle cx="100" cy="100" r="95" fill="none" stroke="%2354613F" stroke-width="6"/><text x="100" y="148" text-anchor="middle" font-family="Georgia,serif" font-size="140" font-style="italic" fill="%2354613F">B</text></svg>' />
 
 <style>
   :root {
-    --verde-bosque: #2C3D2E;
-    --bosque-profundo: #2A3F2C;
-    --crema: #F4EFE6;
-    --crema-soft: #EAE3D5;
+    /* Primario oliva (antes verde bosque) */
+    --verde-bosque: #54613F;
+    --bosque-profundo: #3F4A30;
+    --crema: #F2EBDD;          /* Crema con más undertone madera */
+    --crema-soft: #E6DCC4;
     --tinta: #1A1A18;
     --oliva: #8A9476;
     --oliva-soft: #B8BFA8;
-    --acento: #C9573A; /* tomate maduro - acento de verano (mayo es otoño en AR pero usamos verano para warmth) */
-    --acento-2: #E8C766;
+
+    /* Tonos madera — nuevo eje */
+    --madera: #A07545;          /* Walnut medio */
+    --madera-suave: #C9A581;    /* Roble claro */
+    --madera-oscuro: #5C3D1F;   /* Walnut profundo */
+
+    /* Acentos cálidos */
+    --acento: #C9573A;          /* Tomate maduro */
+    --acento-2: #E8C766;        /* Limón */
 
     /* Spacing */
     --pad-x: clamp(20px, 5vw, 56px);
@@ -197,8 +205,9 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 30% 20%, rgba(244,239,230,0.10), transparent 50%),
-      radial-gradient(ellipse at 80% 90%, rgba(201,87,58,0.18), transparent 60%);
+      radial-gradient(ellipse at 30% 20%, rgba(242,235,221,0.10), transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(160,117,69,0.30), transparent 60%),
+      repeating-linear-gradient(90deg, transparent 0 14px, rgba(0,0,0,0.05) 14px 15px);
   }
   .hero-art-mono {
     z-index: 2;
@@ -416,7 +425,7 @@
     position: absolute;
     top: -12px;
     right: 24px;
-    background: var(--acento);
+    background: var(--madera);
     color: var(--crema);
     padding: 6px 12px;
     font-family: "Inter", sans-serif;
@@ -424,6 +433,7 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     border-radius: 999px;
+    box-shadow: 0 4px 12px rgba(160,117,69,0.3);
   }
   .plan h3 {
     font-family: "Fraunces", serif;
@@ -664,8 +674,9 @@
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 30%, rgba(232,199,102,0.12), transparent 50%),
-      radial-gradient(ellipse at 80% 70%, rgba(201,87,58,0.12), transparent 50%);
+      radial-gradient(ellipse at 20% 30%, rgba(232,199,102,0.10), transparent 50%),
+      radial-gradient(ellipse at 80% 70%, rgba(160,117,69,0.22), transparent 50%),
+      repeating-linear-gradient(90deg, transparent 0 18px, rgba(0,0,0,0.04) 18px 19px);
   }
   .cta-final-inner {
     position: relative;
@@ -776,10 +787,10 @@
   <div class="nav-inner">
     <a href="#top" class="nav-brand">
       <svg width="36" height="36" viewBox="0 0 200 200">
-        <circle cx="100" cy="100" r="95" fill="none" stroke="#2C3D2E" stroke-width="6" />
-        <text x="100" y="148" text-anchor="middle" font-family="Fraunces, serif" font-size="140" font-style="italic" fill="#2C3D2E">S</text>
+        <circle cx="100" cy="100" r="95" fill="none" stroke="#54613F" stroke-width="6" />
+        <text x="100" y="148" text-anchor="middle" font-family="Fraunces, serif" font-size="140" font-style="italic" fill="#54613F">B</text>
       </svg>
-      <span class="word">Stagione</span>
+      <span class="word">Bottega</span>
     </a>
     <div class="nav-links">
       <a href="#como">Cómo funciona</a>
@@ -806,7 +817,7 @@
     <svg class="hero-art-mono" viewBox="0 0 200 200">
       <circle cx="100" cy="100" r="95" fill="none" stroke="#F4EFE6" stroke-width="1.5" />
       <circle cx="100" cy="100" r="86" fill="none" stroke="#F4EFE6" stroke-width="0.5" />
-      <text x="100" y="138" text-anchor="middle" font-family="Fraunces, serif" font-size="120" font-style="italic" fill="#F4EFE6">S</text>
+      <text x="100" y="138" text-anchor="middle" font-family="Fraunces, serif" font-size="120" font-style="italic" fill="#F4EFE6">B</text>
       <defs>
         <path id="topArc" d="M 30,100 A 70,70 0 0 1 170,100" fill="none" />
         <path id="botArc" d="M 30,100 A 70,70 0 0 0 170,100" fill="none" />
@@ -815,11 +826,11 @@
         <textPath href="#topArc" startOffset="50%" text-anchor="middle">FRESCHEZZA · CURATA</textPath>
       </text>
       <text font-family="Inter, sans-serif" font-size="9" letter-spacing="3" fill="#F4EFE6">
-        <textPath href="#botArc" startOffset="50%" text-anchor="middle">DAL 2026 · STAGIONE</textPath>
+        <textPath href="#botArc" startOffset="50%" text-anchor="middle">DAL 2026 · BOTTEGA</textPath>
       </text>
     </svg>
     <div class="hero-art-caption">
-      <span>Stagione · Mayo</span>
+      <span>Bottega · Mayo</span>
       <span>Buenos Aires</span>
     </div>
   </div>
@@ -1026,7 +1037,7 @@
       <br/><br/>
       Vos no perdés tiempo. Solo abrís el cajón y cocinás.
     </h2>
-    <div class="signature">El equipo de Stagione</div>
+    <div class="signature">El equipo de Bottega</div>
   </div>
 </section>
 
@@ -1039,7 +1050,7 @@
   <div class="faq-list">
     <details class="faq-item">
       <summary class="faq-q">¿Puedo elegir qué viene en el cajón?</summary>
-      <p class="faq-a">No. La curaduría es lo que hace a Stagione. Cada semana nuestro equipo elige lo mejor que ofrece la temporada. Si tenés alguna alergia o algo que no comés, lo dejás anotado al suscribirte y lo respetamos.</p>
+      <p class="faq-a">No. La curaduría es lo que hace a Bottega. Cada semana nuestro equipo elige lo mejor que ofrece la temporada. Si tenés alguna alergia o algo que no comés, lo dejás anotado al suscribirte y lo respetamos.</p>
     </details>
     <details class="faq-item">
       <summary class="faq-q">¿Qué pasa si me voy de viaje una semana?</summary>
@@ -1069,7 +1080,7 @@
   <div class="cta-final-inner">
     <h2>Empezá <em>esta semana.</em></h2>
     <p>Suscribite hoy y recibí tu primer cajón el próximo miércoles o jueves, según tu zona.</p>
-    <a href="https://wa.me/5491100000000?text=Hola%20Stagione%2C%20quiero%20suscribirme" class="btn large">Suscribirme por WhatsApp</a>
+    <a href="https://wa.me/5491100000000?text=Hola%20Bottega%2C%20quiero%20suscribirme" class="btn large">Suscribirme por WhatsApp</a>
   </div>
 </section>
 
@@ -1077,7 +1088,7 @@
 <footer class="foot">
   <div class="foot-inner">
     <div class="foot-brand">
-      <div class="word">Stagione</div>
+      <div class="word">Bottega</div>
       <div class="tag">La estación, en tu mesa.</div>
     </div>
     <div class="foot-col">
@@ -1094,8 +1105,8 @@
       <h5>Contacto</h5>
       <ul>
         <li><a href="https://wa.me/5491100000000">WhatsApp</a></li>
-        <li><a href="mailto:hola@stagione.com.ar">hola@stagione.com.ar</a></li>
-        <li><a href="https://instagram.com/stagione.ar">@stagione.ar</a></li>
+        <li><a href="mailto:hola@bottega.com.ar">hola@bottega.com.ar</a></li>
+        <li><a href="https://instagram.com/bottega.ar">@bottega.ar</a></li>
       </ul>
     </div>
     <div class="foot-col">
@@ -1109,7 +1120,7 @@
     </div>
   </div>
   <div class="foot-bottom">
-    <span>© 2026 Stagione · Buenos Aires</span>
+    <span>© 2026 Bottega · Buenos Aires</span>
     <span>Hecho con cuidado en zona norte</span>
   </div>
 </footer>

@@ -1,4 +1,4 @@
-# Stagione
+# Bottega
 
 Delivery premium de frutas y verduras por suscripción mensual. Zona norte de Buenos Aires.
 
@@ -11,5 +11,5 @@ Delivery premium de frutas y verduras por suscripción mensual. Zona norte de Bu
 
 ## URLs (cuando GitHub Pages esté activo)
 
-- Sitio: https://rampedsaint.github.io/stagione/
-- Brandbook: https://rampedsaint.github.io/stagione/brandbook/
+- Sitio: https://rampedsaint.github.io/bottega/
+- Brandbook: https://rampedsaint.github.io/bottega/brandbook/
